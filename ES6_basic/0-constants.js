@@ -1,5 +1,5 @@
 /**
- * Returns a constant task string.
+ * Returns a task string.
  * @return {string} The task string.
  */
 export function taskFirst() {
