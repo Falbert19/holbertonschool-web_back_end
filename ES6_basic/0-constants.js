@@ -16,7 +16,7 @@ export function getLast() {
 }
 
 /**
- * Returns a sentence with a variable.
+ * Returns a sentence with a 
  * @return {string} A sentence using let.
  */
 export function taskNext() {
