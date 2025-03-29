@@ -16,8 +16,8 @@ export function getLast() {
 }
 
 /**
- * Returns a sentence with a 
- * @return {string} A sentence using let.
+ * Returns a sentence with a
+ * @return {string} A sentence using
  */
 export function taskNext() {
   let combination = 'But sometimes let';
