@@ -1,1 +1,1 @@
-In this repo will contain tasks about ES6 classes 
+In this repo will contain tasks about ES6 classes
