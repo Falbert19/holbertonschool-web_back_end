@@ -1,4 +1,4 @@
-import uploadPhoto from './5-photo-reject';
+import uploadPhoto from './utils.js';
 import createUser from './utils.js';
 
 export default async function asyncUploadUser() {
