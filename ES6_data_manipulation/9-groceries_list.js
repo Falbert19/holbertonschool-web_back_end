@@ -7,5 +7,6 @@ export default function groceries_list() {
     ['Banana', 5],
   ];
 
+
   return new Map(items);
 }
