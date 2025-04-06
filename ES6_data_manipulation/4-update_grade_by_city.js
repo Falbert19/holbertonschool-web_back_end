@@ -6,6 +6,6 @@ export default function updateStudentGradeByCity(students, city, newGrades) {
         return {
           ...student,
           grade: gradeRecord ? gradeRecord.grade : 'N/A',
-        };
+      };
     });
 }
