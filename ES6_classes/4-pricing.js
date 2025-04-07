@@ -1,16 +1,16 @@
-import Currency from './3-currency.js';
+import Currency from './3-currency';
 
 export default class Pricing {
   constructor(amount, currency) {
     if (typeof amount !== 'number') {
       throw new TypeError('Amount must be a number');
-  }
-  if (!(currency instanceof Currency)) {
-    throw new TypeError('Currency must be an instance of Currency');
-  }
+    }
+    if (!(currency instanceof Currency)) {
+      throw new TypeError('Currency must be an instance of Currency');
+    }
 
-  this._amount = amount;
-  this._currency = currency;
+    this._amount = amount;
+    this._currency = currency;
   }
 
   get amount() {
@@ -21,7 +21,7 @@ export default class Pricing {
     if (typeof value !== 'number') {
       throw new TypeError('Amount must be a number');
     }
-  this._amount = value;
+    this._amount = value;
   }
 
   get currency() {
@@ -32,7 +32,7 @@ export default class Pricing {
     if (!(value instanceof Currency)) {
       throw new TypeError('Currency must be an instance of Currency');
     }
-  this._currency = value;
+    this._currency = value;
   }
 
   displayFullPrice() {
