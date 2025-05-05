@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-''' Log stats '''
+''' Log stats change '''
 
 from pymongo import MongoClient
 
