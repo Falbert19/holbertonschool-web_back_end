@@ -14,43 +14,44 @@ class Server:
         self.__dataset = None
         self.__indexed_dataset = None
 
-    def dataset(self) -> List[List[str]]:
+    def dataset(self) -> List[List]:
         """Load and cache the dataset from the CSV file"""
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
+
         return self.__dataset
-    
-    def indexed_dataset(self) -> Dict[int, List[str]]:
-        """Dataset indexed by sorting position, starting at 0"""
+
+    def indexed_dataset(self) -> Dict[int, List]:
+        """Dataset indexed by sorting
+        position, starting at 0 """
         if self.__indexed_dataset is None:
             dataset = self.dataset()
+            truncated_dataset = dataset[:1000]
             self.__indexed_dataset = {
                 i: dataset[i] for i in range(len(dataset))
             }
         return self.__indexed_dataset
-    
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict[str, Any]:
+
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Return paginated data that is resilient to deletion."""
-        assert isinstance(index, int) and index >= 0
-        indexed_data = self.indexed_dataset()
-        assert index < len(self.dataset())
-
+        full_data = self.indexed_dataset()
+        assert index < len(full_data) and index >= 0
         data = []
-        current_index = index
-        collected = 0
-
-        while collected < page_size and current_index < len(self.dataset()):
-            if current_index in indexed_data:
-                data.append(indexed_data[current_index])
-                collected += 1
-            current_index += 1
-
-        return{
+        next_index = index + page_size
+        idx = index
+        for _idx in range(page_size):
+            if not full_data.get(idx):
+                next_index += 1
+                idx += 1
+            data.append(full_data.get(idx))
+            idx += 1
+        idx_dict = {
             "index": index,
-            "next_index": current_index,
-            "page_size": len(data),
-            "data": data
+            "data": data,
+            "next_index": next_index,
+            "page_size": page_size
         }
+        return idx_dict
