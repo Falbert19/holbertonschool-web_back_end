@@ -6,7 +6,6 @@ process.stdin.on('data', (data) => {
   console.log(`Your name is: ${input}\n`);
 });
 
-
 process.stdin.on('end', () => {
   console.log('This important software is now closing');
 });
