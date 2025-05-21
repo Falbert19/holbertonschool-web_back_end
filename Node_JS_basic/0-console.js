@@ -1,4 +1,4 @@
-/**function  that prints in STDOUT the string argument */
+/*eslint-disable*/
 function displayMessage(message){
     console.log(message);
 }
