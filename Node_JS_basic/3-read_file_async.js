@@ -15,7 +15,7 @@ function countStudents(path) {
 
       for (const student of students) {
         const parts = student.split(',');
-        if (parts.length < 4) continue; // skip invalid line
+        if (parts.length < 4) continue;
 
         const firstName = parts[0];
         const field = parts[3];
@@ -26,12 +26,12 @@ function countStudents(path) {
         fields[field].push(firstName);
       }
 
-      console.log(`Number of students: ${students.length}`);
+      let output = `Number of students: ${students.length}`;
       for (const field in fields) {
-        console.log(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
+        output += `\nNumber of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`;
       }
 
-      resolve();
+      resolve(output);
     });
   });
 }

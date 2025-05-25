@@ -10,10 +10,9 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('This is the list of our students\n');
     countStudents(database)
-      .then(() => {
-        res.end();
+      .then((output) => {
+        res.end(`This is the list of our students\n${output}`);
       })
       .catch((err) => {
         res.end(err.message);
