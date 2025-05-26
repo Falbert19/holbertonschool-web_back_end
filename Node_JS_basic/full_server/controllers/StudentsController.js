@@ -30,7 +30,7 @@ class StudentsController {
     try {
       const filePath = process.argv[2];
       const fields = await readDatabase(filePath);
-      const list = fields[major];
+      const list = fields[major] || [];
       res.status(200).send(`List: ${list.join(', ')}`);
     } catch (err) {
       res.status(500).send('Cannot load the database');
