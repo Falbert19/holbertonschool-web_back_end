@@ -10,15 +10,26 @@ export function readDatabase(filePath) {
       }
 
       const lines = data.split('\n').filter(line => line.trim() !== '');
-      const students = lines.slice(1); // Skip header
-      const fields = {};
+      if (lines.length < 2) {
+        // No valid students
+        resolve({});
+        return;
+      }
 
-      for (const line of students) {
-        const [first, , , field] = line.split(',');
-        if (field) {
-          if (!fields[field]) fields[field] = [];
-          fields[field].push(first);
-        }
+      const fields = {};
+      const header = lines[0].split(',');
+      const fieldIndex = header.indexOf('field');
+      const nameIndex = header.indexOf('firstname');
+
+      for (const line of lines.slice(1)) {
+        const parts = line.split(',');
+        if (parts.length <= Math.max(fieldIndex, nameIndex)) continue;
+
+        const firstName = parts[nameIndex];
+        const field = parts[fieldIndex];
+
+        if (!fields[field]) fields[field] = [];
+        fields[field].push(firstName);
       }
 
       resolve(fields);
