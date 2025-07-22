@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-''' Log stats change '''
+''' Log stats'''
 
 from pymongo import MongoClient
 
 
 def log_stats():
-    ''' log stats new '''
+    ''' Log stats about Nginx logs'''
     client = MongoClient('mongodb://127.0.0.1:27017')
     db = client.logs
     collection = db.nginx
